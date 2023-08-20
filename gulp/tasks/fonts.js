@@ -32,7 +32,7 @@ const fontWeights = {
 const fontFaceTemplate = (name, file, weight, style) => `@font-face {
 	font-family: ${name};
 	font-display: swap;
-	src: url("../fonts/${file}.woff2") format("woff2");
+	src: url("../fonts/${file}.woff") format("woff");
 	font-weight: ${weight};
 	font-style: ${style};
 }\n`;
@@ -52,7 +52,7 @@ const otfToTtf = (done) => {
 
 const ttfToWoff = () => {
 	if (fs.existsSync(fontFacesFile)) {
-		return gulp.src(`${filePaths.src.fonts}/*.woff2`, {})
+		return gulp.src(`${filePaths.src.fonts}/*.woff`, {})
 			.pipe(logger.handleError('FONTS [ttfToWoff]'))
 			.pipe(gulp.dest(filePaths.build.fonts));
 	}
@@ -63,10 +63,10 @@ const ttfToWoff = () => {
 		.pipe(ttf2woff2())
 		.pipe(gulp.dest(filePaths.src.fonts))
 
-		/** Если нужно раскомментировать. Конвертация в [.woff] */
-		//.pipe(gulp.src(`${filePaths.src.fonts}/*.ttf`))
-		//.pipe(fonter({ formats: ['woff'] }))
-		//.pipe(gulp.dest(filePaths.build.fonts))
+		// Если нужно раскомментировать. Конвертация в [.woff] 
+		.pipe(gulp.src(`${filePaths.src.fonts}/*.ttf`))
+		.pipe(fonter({ formats: ['woff'] }))
+		.pipe(gulp.dest(filePaths.build.fonts))
 
 		/** Поиск шрифтов [.woff, .woff2] и выгрузка в финальную папку */
 		.pipe(gulp.src(`${filePaths.src.fonts}/*.{woff,woff2}`))

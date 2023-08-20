@@ -24,13 +24,8 @@ aside {
 }
 
 html {
-  opacity: 0;
   scroll-behavior: smooth;
   transition: opacity 0.8s ease-in-out;
-
-  &.loaded {
-    opacity: 1;
-  }
 
   &.lock {
     overflow: hidden;
@@ -42,13 +37,12 @@ html,
 body {
   width: 100%;
   height: 100%;
-  min-width: $minWidth + px;
 }
 
 body {
   overscroll-behavior: none;
-  font-size: var(--bs-font-size);
-  font-family: var(--bs-font-family);
+  font-size: 16px;
+  font-family: 'Lato';
   font-weight: var(--bs-font-weight);
   line-height: var(--bs-line-height);
   text-rendering: optimizelegibility;
@@ -107,10 +101,16 @@ a {
 ul,
 li {
   list-style: none;
+  padding: 0;
+  padding-bottom: 0;
+  padding-left: 0;
+  margin: 0;
 }
 
 img {
-  vertical-align: top;
+  vertical-align: baseline;
+  max-width: 100%;
+  object-fit: cover;
 }
 
 h1,

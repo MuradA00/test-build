@@ -15,6 +15,7 @@ import PopupManager from './modules/PopupManager';
 import BurgerMenu from './modules/BurgerMenu';
 import Tabs from './modules/Tabs';
 import Accordion from './modules/Accordion.js';
+import Main from './modules/Main';
 
 BaseHelpers.checkWebpSupport();
 

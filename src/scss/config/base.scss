@@ -1,65 +1,970 @@
-/** Базовые анимации: */
-@import 'keyframes';
-
-/** Стили для полноэкранного блока: */
-// @import "fullscreen";
-
-/*
-* (i) Стили будут применяться ко
-* всем классам содержащим *__container
-* Например header__container, main__container и т.д.
-*/
-[class*='__container'] {
-  max-width: rem($maxWidthContainer);
-  margin: 0 auto;
-  padding: 0 rem($mainOffset);
+@include mq(min, xxl) {
+  .container {
+    max-width: calc(1360px + 1.5rem);
+  }
 }
+main {
+  & > section {
+    margin-bottom: var(--root-section-margin);
+   }
+}
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Trajan';
+  font-size: 1.5rem;
+  line-height: 130%;
 
-// Стили отзывчивых картинок (IBG) ============================================
-[class*='-ibg'] {
+  color: var(--clr-2);
+
+  @include mq(min, xxl) {
+    font-size: 2.5rem;
+  }
+}
+@include mq(min, xl) {
+  .col-xl-9 {
+    flex: 0 0 auto;
+    width: 75% !important;
+  }
+}
+.nav {
+  order: 3;
+  margin-top: 1.5rem;
+  @include mq(min, lg) {
+    margin-top: 2rem;
+  }
+  @include mq(min, xl) {
+    order: initial;
+
+    margin-top: 0;
+  }
+  &-list {
+    display: flex;
+    align-items: center;
+    grid-gap: 1.5rem;
+    @include mq(min, lg) {
+      grid-gap: 2rem;
+    }
+  }
+  &-link {
+    font-size: 0.875rem;
+
+    &:hover {
+      text-decoration: underline;
+      text-underline-offset: 2px;
+      color: var(--clr-1);
+    }
+  }
+}
+.header {
+  &-body {
+    position: relative;
+    padding: 1.25rem 0;
+    &::after {
+      @include pseudo;
+      width: calc(100% - 2rem);
+      left: 50%;
+      transform: translateX(-50%);
+      height: 1px;
+      opacity: .5;
+      background-color: #D2C2C3;
+
+      display: block;
+
+      top: 78px;
+      @include mq(min, lg) {
+        top: 5.875rem;
+      }
+      @include mq(min, xl) {
+        display: none;
+      }
+    }
+    @include mq(min, xl) {
+      padding: 1.5rem 0 2rem 0;
+    }
+  }
+  &-logo {
+    max-width: 200px;
+    min-width: 12.5rem;
+    flex: 0 0 auto;
+  }
+  &-second-row {
+    width: max-content;
+    @include mq(min, xl) {
+      width: auto;
+    }
+  }
+}
+.log-in-btn {
+  padding: 0 !important;
+  border: none !important;
+
+  img, svg {
+    width: 2rem !important;
+    height: 2rem;
+  }
+  @include dfc;
+  &__text {
+    display: none;
+  }
+}
+@include mq(min, lg) {
+  .log-in-btn {
+    padding: 1.125rem 1.5rem !important;
+    border: 1px solid var(--clr-1) !important;
+    &__text {
+      display: block;
+    }
+    img,  svg {
+      width: 1.25rem !important;
+      height: 1.25rem;
+    }
+  }
+}
+.is-logged {
+  display: flex;
+  align-items: center;
+  grid-gap: .5rem;
+
+  @include mq(min, lg) {
+    grid-gap: 1.25rem;
+  }
+  &__inner {
+    display: flex;
+    grid-gap: 0.5rem;
+    flex: 0 0 auto;
+  }
+  &__hey {
+    display: none;
+
+    @include mq(min, lg) {
+      display: block;
+    }
+  }
+  &__icon {
+    @include dfc;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    background-image: linear-gradient(135deg, #FFE8D7 0%, #EEFEFF 100%);
+  }
+  &__btn {
+    background: var(--btn-gradient);
+    aspect-ratio: 1/ 1;
+    width: 2.5rem;
+    flex: 0 0 auto;
+    border-radius: 0 0.75rem 0.75rem 0;
+
+    @include mq(min, lg) {
+      width: 3.5rem;
+    }
+  }
+}
+.custom-lang {
+  cursor: pointer;
   position: relative;
 
-  img {
+  @include tr(300, ease);
+
+  border-radius: 0.75rem .75rem 0 0;
+
+  padding: 0.5rem;
+
+  &--header {
+    .custom-lang-arrow {
+        fill: transparent;
+
+        circle {
+          fill: transparent;
+
+          @include mq(min, lg) {
+            fill: var(--clr-1);
+          }
+        }
+
+    }
+    .custom-lang-selected {
+      grid-gap: 0px;
+
+      @include mq(min, lg) {
+        grid-gap: 0.5rem;
+      }
+    }
+  }
+  &--white {
+    .custom-lang-text {
+      color: #fff;
+    }
+    .custom-lang-arrow {
+      path {
+        stroke: #fff;
+      }
+      circle {
+        fill: var(--clr-1);
+        opacity: .2;
+      }
+    }
+    &:hover {
+      background-color: #fff !important;
+      .custom-lang-hidden {
+        background-color: #fff !important;
+      }
+      .custom-lang-arrow {
+        circle {
+          opacity: .2;
+        }
+        path {
+          stroke: var(--clr-1) !important;
+        }
+      }
+      .custom-lang-text {
+        color: var(--clr-2) !important;
+      }
+    }
+  }
+
+  &:hover {
+    background-color: var(--clr-2);
+    .custom-lang-hidden {
+     opacity: 1;
+     visibility: visible;
+
+      padding: 0 .5rem .5rem;
+
+      pointer-events: all;
+
+      background-color: var(--clr-2);
+    }
+    .custom-lang-text {
+      color: #fff;
+    }
+    .custom-lang-arrow {
+      path {
+        stroke: #fff;
+      }
+    }
+  }
+  &-selected {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    grid-gap: 6px;
+  }
+  &-arrow {
+    border-radius: 50%;
+
+    path {
+      stroke: var(--clr-1);
+      fill: transparent;
+    }
+  }
+  &-flag {
+    width: 1.25rem;
+  }
+  &-item {
+    display: flex;
+    align-items: center;
+    grid-gap: 0.5rem;
+  }
+  &-text {
+    color: var(--clr-2);
+    font-weight: 600;
+
+    display: none;
+
+    @include tr(300, ease);
+
+    &--hidden {
+      opacity: .4;
+
+      @include hover {
+        &:hover {
+          opacity: 1;
+        }
+      }
+    }
+  }
+  &-hidden {
+    opacity: 0;
+    visibility: hidden;
+
     position: absolute;
+    z-index: 2;
+    top: 100%;
+    width: 100%;
+    left: 0;
+
+    border-radius: 0 0 .75rem .75rem;
+
+    overflow: hidden;
+
+    @include tr(200, ease);
+
+    pointer-events: none;
+
+    padding: 0 .5rem 0rem;
+
+  }
+  &-list {
+    margin-top: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    grid-gap: 12px;
+
+  }
+}
+@include mq(min, lg) {
+  .custom-lang {
+    padding: 1rem;
+    &:hover {
+      padding: 1rem;
+    }
+    &-selected {
+      grid-gap: 0.5rem;
+      flex-direction: row;
+    }
+    &-arrow {
+      stroke: var(--clr-1);
+    }
+    &-text {
+      display: block;
+    }
+    &-hidden {
+      padding: 0 1rem 1rem !important;
+    }
+    &-list {
+      grid-gap: 1.5rem;
+    }
+  }
+}
+.home {
+  &-body {
+    min-height: 27.375rem;
+    @include mq(min, md) {
+      min-height: 42.25rem;
+    }
+    @include mq(min, xl) {
+      min-height: 42.5rem
+    }
+  }
+  &-content {
+    padding-bottom: 7.5rem;
+    padding-right: 1.5rem;
+    @include mq(min, xl) {
+      padding-right: 2.875rem;
+    }
+  }
+  &-image {
+    max-width: 25.5rem;
+    bottom: -1rem;
+    left: -4rem;
+    @include mq(min, md) {
+      max-width: 35.75rem;
+      left: -9rem;
+      bottom: 4.375rem;
+    }
+    @include mq(min, xl) {
+      left: 0;
+      bottom: 0.75rem;
+      max-width: 50rem;
+    }
+  }
+  &-title {
+    font-size: 1.5rem;
+    @include mq(min, md) {
+      font-size: 2.5rem;
+    }
+    @include mq(min, xl) {
+      font-size: 3.5rem;
+    }
+  }
+  &-btn-wrapper {
+    bottom: -2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 0.375rem;
+    @include mq(min, sm) {
+      left: initial;
+      right: 3rem;
+      transform: translateX(0);
+    }
+    @include mq(min, md) {
+      padding: 0.5rem;
+      bottom: -41px;
+     }
+    @include mq(min, xl) {
+      right: 11.625rem;
+    }
+  }
+  &-offer {
+    min-height: 11.5rem;
+    padding: 1.75rem 0.75rem;
+    @include mq(min, md) {
+      padding: 2rem 2.5rem;
+      min-height: 15.75rem;
+    }
+    @include mq(min, xl) {
+      padding: 2.5rem 2rem;
+    }
+  }
+}
+.lessons {
+  margin: var(--neg-lessons-section-margin) 0 var(--root-section-margin) 0;
+  &-info-text {
+    font-size: 1rem;
+    @include mq(min, sm) {
+      font-size: 1.25rem;
+    }
+  }
+  &-content-top {
+    margin-bottom: 3rem;
+    @include mq(min, sm) {
+      margin-bottom: 3.5rem;
+    }
+  }
+  &-content {
+    padding: 1.5rem 1rem;
+    box-shadow: 0rem 1rem 2.5rem 0rem rgba(0, 0, 0, 0.03);
+    @include mq(min, sm) {
+      padding: 2rem 1.5rem;
+    }
+    @include mq(min, xl) {
+      padding: 3.5rem 2.5rem;
+    }
+  }
+}
+.button-primary {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 1.125rem 1.5rem;
+    border: 1px solid var(--clr-1);
+
+    width: fit-content;
+
+    border-radius: 0.75rem;
+
+    background-color: #fff;
+
+    transition: 200ms ease;
+
+    overflow: hidden;
+
+    position: relative;
+
+    &--effect {
+      overflow: hidden;
+      &::after {
+        content: '';
+        display: block;
+        position: absolute;
+        background: rgba(255, 255, 255, 0.5);
+        width: 3.75rem;
+        height: 100%;
+        top: 0;
+        filter: blur(.5rem);
+        visibility: hidden;
+        transform: translateX(-6.25rem) skewX(-15deg);
+      }
+      @include hover {
+        &:hover {
+          &::after {
+            left: 125%;
+          }
+        }
+      }
+    }
+
+    &--filled {
+      &::before {
+        @include pseudo;
+
+        width: 100%;
+        height: 100%;
+
+        background-image: var(--btn-gradient);
+
+        opacity: 0;
+
+        @include tr(300, ease);
+
+        top: 0;
+        left: 0;
+      }
+      @include hover {
+        &:hover {
+          border: 1px solid transparent;
+          & > span{
+            color: #fff;
+          }
+          &::before {
+            opacity: 1;
+          }
+        }
+      }
+    }
+    & > span {
+      line-height: 100%;
+      font-weight: 700;
+      font-size: 0.875rem;
+
+      position: relative;
+
+      color: var(--clr-1);
+    }
+
+    @include mq(min, md) {
+      padding: 1.5rem 1.5rem;
+
+      & > span {
+        font-size: 1rem;
+      }
+    }
+    &--md {
+      padding: 1.25rem 1.5rem;
+    }
+}
+p {
+  line-height: 160%;
+  font-weight: 700;
+  font-size: 0.875rem;
+  color: var(--clr-1);
+  @include mq(min, xxl) {
+    font-size: 1rem;
+    font-weight: 400;
+  }
+}
+.show-shine {
+  transform: scale(1.05);
+  border: 1px solid transparent !important;
+  & > span {
+    color: #fff;
+  }
+  &::before {
+    opacity: 1;
+  }
+  &::after {
+    transform: translateX(18.75rem) skewX(-15deg);
+    transition: 900ms;
+    transition-delay: 300ms;
+    visibility: visible;
+  }
+}
+.no-round-flag {
+  width: 1.75rem;
+  @include mq(min, xxl) {
+    width: 2.875rem;
+  }
+}
+.info {
+  &-row {
+    grid-gap: 5.25rem 0;
+    @include mq(min, sm) {
+      grid-gap: 9.25rem 0;
+    }
+    @include mq(min, xl) {
+      grid-gap: 7.75rem 0;
+    }
+  }
+  &-divider {
+    display: none;
+    @include mq(min, xxl) {display: block;}
+  }
+  &-icon {
+    width: 3rem;
+    height: 3rem;
+  }
+}
+.map {
+  &-banner {
+    min-height: 8.125rem;
+    border-radius: 0.75rem;
+  }
+}
+.card {
+  &-block {
+    flex: 0 0 auto;
+    min-width: 18.25rem;
+  }
+  &-row {
+    margin-right: -1rem;
+    overflow-x: scroll;
+    @include mq(min, md) {
+      margin-right: 0;
+      overflow-x: initial;
+    }
+  }
+  &-item {
+    min-height: 438px;
+
+    padding: 0.75rem;
+
+    background: linear-gradient(180deg, #FFE8D7 0%, #EEE6DB 100%);
+    box-shadow: 0rem 1rem 1.25rem 0rem rgba(238, 230, 219, 0.30);
+
+    @include mq(min, sm) {
+      min-height: 28.375rem;
+    }
+    @include mq(min, xxl) {
+      min-height: 37.5rem;
+    }
+  }
+  &-title {
+    line-height: 120%;
+    font-size: 1.5rem;
+  }
+}
+.faq {
+  &-header {
+    font-size: 1.25rem;
+    font-weight: 700;
+    line-height: 130%;
+
+    color: var(--clr-2);
+
+    transition: 300ms ease;
+    @include mq(min, xl) {
+      font-size: 1.5rem;
+    }
+    border-bottom: 1px solid rgba(241, 241, 241, 1);
+  }
+  &-image-container {
+    display: grid;
+    grid-template-rows: 0fr;
+
+    overflow: hidden;
+
+    transition: grid-template-rows var(--faq-image-container-transition-duration) var(--faq-image-container-transition-timing) 100ms;
+
+    pointer-events: none;
+
+    img {
+      min-height: 0;
+      max-height: var(--faq-image-container-h);
+      border-radius: 0 0 1rem 1rem;
+      display: block;
+      width: 100%;
+      height: 100%;
+      will-change: grid-template-rows;
+    }
+  }
+  &-row {
+    cursor: pointer;
+
+    &:hover {
+      .faq-image-container {
+        grid-template-rows: 1fr;
+        pointer-events: all;
+
+        img {
+          min-height: 100%;
+
+        }
+      }
+      .faq-header {
+        font-size: 1.5rem;
+        color: var(--clr-1);
+
+        border-bottom: none;
+
+        @include mq(min, xl) {
+          font-size: 2.5rem;;
+        }
+      }
+    }
+  }
+}
+.tab {
+  margin-bottom: var(--root-section-margin);
+  &-container {
+    position: relative;
+
+    border-radius: 0 0 1rem 1rem;
+    background: var(--clr-6);
+    box-shadow: 0rem 1rem 1.25rem 0rem rgba(238, 230, 219, 0.30);
+
+    @include mq(min, lg) {
+      border-radius: 0 1rem 1rem 1rem;
+    }
+
+    &-image {
+      position: absolute;
+
+      max-width: 22.5rem;
+      width: 100%;
+
+      left: 50%;
+      top: 0.875rem;
+
+      transform: translateX(-50%);
+
+      img {
+        width: 100%;
+        height: 100%;
+        display: block;
+      }
+      @include mq(min, md) {
+        width: auto;
+        max-width: 21.75rem;
+        left: inherit;
+        right: -1rem;
+        bottom: 0;
+        transform: translateX(0);
+      }
+      @include mq(min, lg) {
+        position: initial;
+        transform: translateY(0.5rem);
+        max-width: 100%;
+      }
+    }
+  }
+  &-content-logo {
+    max-width: 11.5rem;
+  }
+  &-toggles {
+    overflow-x: scroll;
+    @include mq(min, xxl) {
+      overflow-x: initial;
+    }
+  }
+  &-inner {
+    border-radius: 0 0.75rem 0.75rem 0.75rem;
+    background: #FFF;
+    box-shadow: 1.25rem 0rem 1.875rem 0rem rgba(207, 192, 171, 0.30);
+    overflow: hidden;
+
+    padding: 1.5rem;
+
+    margin-top: 11.25rem;
+    @include mq(min, md) {
+      margin-top: 0;
+      padding: 1.5rem 2.75rem 1.625rem 1.5rem;
+    }
+    @include mq(min, xxl) {
+      padding: 2.5rem 4rem 6rem 2.75rem;
+    }
+  }
+  &-content {
+    transition: transform 500ms ease, opacity 600ms ease;
+
+    opacity: 0;
+    visibility: hidden;
+
+    pointer-events: none;
+
+    position: absolute;
+
+    transform: translateY(15%);
+
+    @include mq(min, md) {
+      transform: translateX(-15%);
+    }
+
+    top: 0;
+    left: 0;
+
     width: 100%;
     height: 100%;
-    top: 0;
-    left: 0;
-    object-fit: cover;
+
+    grid-gap: 3rem;
+
+    &--active {
+      opacity: 1;
+      pointer-events: all;
+      visibility: visible;
+      position: initial;
+      z-index: 1;
+      transform: translateY(0);
+
+      @include mq(min, md) {
+        transform: translateX(0);
+      }
+    }
+    &-text {
+      font-weight: 700;
+      @include mq(min, md) {
+        font-weight: 400;
+      }
+    }
+  }
+  &-toggle {
+    font-size: 1rem;
+    letter-spacing: -0.025rem;
+
+    padding: 1.5rem;
+
+    flex: 0 0 auto;
+
+    cursor: pointer;
+
+    @include tr(400, ease);
+
+    position: relative;
+
+    border-radius: 1rem 1rem 0 0;
+
+    @include dfc;
+    text-align: center;
+
+    &::before {
+      @include pseudo;
+      width: 100%;
+      height: 100%;
+
+      border-radius: inherit;
+
+      opacity: 0;
+
+      transition: inherit;
+
+      z-index: -1;
+
+      @include center;
+
+      background: linear-gradient(180deg, #FFE8D7 0%, #EEE6DB 100%);
+    }
+
+    @include hover {
+      &:hover {
+        &::before {
+          opacity: .5;
+        }
+      }
+    }
+
+    &--active {
+      box-shadow: 0rem 1rem 1.25rem 0rem rgba(238, 230, 219, 0.30);
+      order: -1;
+      &::before {
+        opacity: 1;
+      }
+    }
+
+    @include mq(min, xxl) {
+      font-size: 1.25rem;
+      padding: 2rem 2.5rem;
+    }
   }
 }
-
-[class*='-ibg_contain'] {
-  img {
-    object-fit: contain;
+.to-top-btn {
+  aspect-ratio: 1 / 1;
+  height: 70px;
+  left: 50%;
+  top: -35px;
+  transform: translateX(-50%);
+  @include mq(min, lg) {
+  right: 2rem;
+  left: initial;
+  transform: translateX(0);
+  }
+  &__inner {
+    transform: translateY(-0.375rem);
   }
 }
+.footer {
+  margin-bottom: 1rem;
+  &-bottom-link {
+    @include tr(300, ease);
 
-// Оболочка ===================================================================
-.wrapper {
-  display: flex;
-  flex-direction: column;
-  min-height: 100%;
-
-  /** Поменять на clip - если используется в проекте position: sticky */
-  overflow: hidden;
-}
-
-.page {
-  position: relative;
-  flex: 1 1 auto;
-
-  [data-observ] {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: rem(2);
-    background: transparent;
-    pointer-events: none;
+    @include hover {
+      &:hover {
+        opacity: 1;
+      }
+    }
   }
+  &-mail-link {
+    @include tr(300, ease);
 
-  &_start {
-    padding-top: rem($headerHeight);
+    @include hover {
+      &:hover {
+        opacity: .6;
+      }
+    }
+  }
+  &-nav-link {
+    color: #fff;
+    opacity: .6;
+    @include tr(300, ease);
+
+    @include hover {
+      &:hover {
+        opacity: 1;
+      }
+    }
+  }
+  &-top {
+    margin-bottom: 1.5rem;
+    @include mq(min, sm) {
+      margin-bottom: 2rem;
+    }
+  }
+  &-logo {
+    width: 3.5rem;
+
+    &-block {
+      margin-top: 6.875rem;
+    }
+  }
+  &-rights {
+    font-size: 0.75rem;
+    color: #fff;
+    opacity: .6;
+    @include mq(min, sm) {
+      font-size: 0.875rem;
+    }
+  }
+  &-bottom {
+    padding-top: 1.25rem;
+
+    border-top: 1px solid rgba(255, 255, 255, .12);
+
+    @include mq(min, sm) {
+      padding-top: 2rem;
+    }
+  }
+  @include mq(min, xxl) {
+    margin-bottom: 3rem;
+  }
+  &-body {
+    padding: 2.5rem 1.5rem 1.5rem;
+    @include mq(min, md) {
+      padding: 2rem;
+    }
+    @include mq(min, xxl) {
+      padding: 2.875rem 3rem 2.25rem;
+    }
+  }
+}
+.socials {
+  &-divider {
+    width: 1px;
+    height: 1rem;
+    background-color: #fff;
+    opacity: .12;
+  }
+  &-text {
+    color: #fff;
+    font-size: 0.875rem;
+  }
+  &-link {
+    opacity: .6;
+    @include tr(300, ease);
+
+    @include hover {
+      &:hover {
+        opacity: 1;
+      }
+    }
+
+    img, svg {
+      width: 1.5rem;
+      height: 1.5rem;
+    }
+  }
+}
+@include mq(min, xxl) {
+  .card {
+    &-title {
+      font-size: 2.5rem;
+    }
   }
 }

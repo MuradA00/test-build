@@ -1,29 +1,114 @@
-$mainOffset: 15; // отступы безопасности для контейнера
-$maxWidth: 1920; // максимальная ширина страницы
-$minWidth: 320; // минимальная ширина телефона
-$containerWidth: 1160; // ширина контейнера из макета
-$maxWidthContainer: $containerWidth + ($mainOffset * 2); // ширина контейнера с учетом padding слева и справа
-
-$headerHeight: 100;
-$footerHeight: 100;
-
 :root {
-  --bs-font-family: 'Inter', sans-serif; // Семейство шрифта по умолчанию
-  --bs-font-size: 16px; // Размер шрифта по умолчанию
-  --bs-font-weight: 400; // Жирность шрифта по умолчанию
-  --bs-line-height: 1; // Базовая высота шрифта
-  --bs-font-color: #222; // Цвет шрифта по умолчанию
-  --bs-transition: .3s ease-in-out;
-  --bs-radius: 10px;
-
-  --primary-color: #131313;
-  --primary-hover-color: #2d2d2d;
-  --secondary-color: #ff4040;
+  --red-clr: #FF4B4B;
+  --grn-clr: #93CD49;
+  --light-clr: #F3F4F5;
+  --clr-2: #20282B;
+  --clr-1: #314E5C;
   --white-color: #fff;
-  --black-color: #131313;
+  --clr-3: #716F7D;
+  --clr-4: #A098A5;
+  --clr-5: #D2C2C3;
+  --clr-6: #EEE6DB;
+  --card-bg: linear-gradient(180deg, #FFE8D7 0%, var(--clr-6) 100%);
+  --btn-gradient: linear-gradient(135deg, #314E5C 0%, #3A7592 100%);
+  --neg-lessons-section-margin: -1.25rem;
+  --root-section-margin: 3rem;
+  --faq-image-container-transition-duration: 300ms;
+  --faq-image-container-transition-timing: ease;
+  --faq-image-container-h: 7rem;
+}
 
-  --bs-shadow: 0px 2px 3px rgba(#000, 10%), 0px 8px 3px rgba(#000, 10%);
-  --hover-shadow: 0 0 5px 0 rgba(#000, 10%),
-                  0 0 10px 0 rgba(#000, 10%),
-                  0 0 15px 0 rgba(#000, 10%);
+$media: (
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px,
+  xxl: 1400px
+);
+
+.text-red-clr {
+  color: var(--red-clr);
+}
+.text-grn-clr {
+  color: var(--grn-clr);
+}
+.text-light-clr {
+  color: var(--light-clr);
+}
+.text-clr-1 {
+  color: var(--clr-1);
+}
+.text-clr-2 {
+  color: var(--clr-2);
+}
+.text-clr-3 {
+  color: var(--clr-3);
+}
+.text-clr-4 {
+  color: var(--clr-4);
+}
+.text-clr-5 {
+  color: var(--clr-5);
+}
+.text-clr-6 {
+  color: var(--clr-6);
+}
+.ff-sec {
+  font-family: 'Trajan';
+}
+.bg-red-clr {
+  background-color: var(--red-clr);
+}
+.bg-grn-clr {
+  background-color: var(--grn-clr);
+}
+.bg-light-clr {
+  background-color: var(--light-clr);
+}
+.bg-clr-1 {
+  background-color: var(--clr-1);
+}
+.bg-clr-2 {
+  background-color: var(--clr-2);
+}
+.bg-clr-3 {
+  background-color: var(--clr-3);
+}
+.bg-clr-4 {
+  background-color: var(--clr-4);
+}
+.bg-clr-5 {
+  background-color: var(--clr-5);
+}
+.bg-clr-6 {
+  background-color: var(--clr-6);
+}
+.ff-sec {
+  font-family: 'Trajan';
+}
+
+@include mq(min, sm) {
+  :root {
+    --root-section-margin: 4rem;
+    --faq-image-container-h: 15.75rem;
+  }
+}
+@include mq(min, md) {
+  :root {
+    --neg-lessons-section-margin: -5.25rem;
+  }
+}
+@include mq(min, lg) {
+
+}
+@include mq(min, xl) {
+  :root {
+    --faq-image-container-h: 21.75rem;
+    --root-section-margin: 6rem;
+    --neg-lessons-section-margin: -4rem;
+  }
+}
+@include mq(min, xxl) {
+
 }
